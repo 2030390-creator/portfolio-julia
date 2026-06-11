@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Билида Юлия — AI Creator / Content Manager</title>
+<style>
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;background:#0f0f10;color:#f4eee9;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,video{max-width:100%;display:block}
+.page{min-height:100vh;background:radial-gradient(circle at top left,rgba(212,176,186,.16),transparent 32%),radial-gradient(circle at 92% 16%,rgba(212,176,138,.14),transparent 28%),#0f0f10}
+.container{max-width:1180px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:rgba(15,15,16,.76);border-bottom:1px solid rgba(244,238,233,.08)}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#d4b08a;white-space:nowrap}
+.nav-links{display:flex;gap:26px;align-items:center;font-size:15px;color:rgba(244,238,233,.72)}
+.nav-links a:hover{color:#d4b08a}
+section{padding:76px 0}
+.badge{display:inline-flex;padding:10px 18px;border:1px solid rgba(212,176,138,.28);border-radius:999px;color:#d4b08a;font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px}
+h1{font-size:clamp(44px,7vw,92px);line-height:.92;letter-spacing:-.065em;margin-bottom:26px}
+.section-title{font-size:clamp(34px,5vw,62px);line-height:1;letter-spacing:-.05em;margin-bottom:18px}
+.section-subtitle,.lead{max-width:780px;font-size:19px;line-height:1.7;color:rgba(244,238,233,.70);margin-bottom:34px}
+.lead{font-size:21px;color:rgba(244,238,233,.76)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 26px;border-radius:999px;font-weight:700;transition:.25s ease;border:0;cursor:pointer}
+.btn-primary{background:#d4b08a;color:#0f0f10!important}
+.btn-secondary{border:1px solid rgba(244,238,233,.18);color:#f4eee9!important;background:transparent}
+.btn:hover{transform:translateY(-3px)}
+.hero-actions,.actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:32px}
+.card{background:#161413;border:1px solid rgba(244,238,233,.08);border-radius:30px;padding:30px}
+.num{color:#d4b08a;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+.card h3,.card h2{font-size:26px;line-height:1.08;letter-spacing:-.035em;margin-bottom:14px}
+.card p{font-size:16px;line-height:1.65;color:rgba(244,238,233,.68)}
+footer{padding:34px 0;color:rgba(244,238,233,.42);font-size:14px}
+@media(max-width:900px){.nav{align-items:flex-start;flex-direction:column;padding:18px 0}.nav-links{flex-wrap:wrap;gap:14px}section{padding:56px 0}}
+@media(max-width:640px){.container{padding:0 14px}.card{padding:24px;border-radius:24px}.btn{width:100%}}
+
+.hero{padding:96px 0 70px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center}
+.hero-card{position:relative;border-radius:38px;padding:20px;background:linear-gradient(145deg,rgba(244,238,233,.10),rgba(244,238,233,.03));border:1px solid rgba(244,238,233,.1);box-shadow:0 40px 100px rgba(0,0,0,.36)}
+.hero-card img{width:100%;border-radius:28px;aspect-ratio:4/5;object-fit:cover}
+.floating-card{position:absolute;left:-24px;bottom:34px;max-width:245px;padding:20px;border-radius:24px;background:rgba(22,20,19,.9);border:1px solid rgba(212,176,138,.22);backdrop-filter:blur(16px)}
+.floating-card strong{display:block;font-size:28px;color:#d4b08a;margin-bottom:6px}.floating-card span{font-size:14px;line-height:1.45;color:rgba(244,238,233,.66)}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.service-card{min-height:280px;display:flex;flex-direction:column;justify-content:space-between;transition:.25s ease}
+.service-card:hover{transform:translateY(-6px);border-color:rgba(212,176,138,.35);background:#1a1817}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.portfolio-card{overflow:hidden;padding:0;transition:.25s ease;display:flex;flex-direction:column;height:100%}
+.portfolio-card:hover{transform:translateY(-6px);border-color:rgba(212,176,138,.35)}
+.portfolio-card img{width:100%;height:320px;object-fit:cover;flex-shrink:0}
+.portfolio-content{padding:28px;display:flex;flex-direction:column;flex:1}
+.portfolio-content h3{font-size:28px;line-height:1.05;letter-spacing:-.035em;margin-bottom:12px}
+.portfolio-content p{font-size:16px;line-height:1.65;color:rgba(244,238,233,.68);margin-bottom:22px}
+.portfolio-content .btn{margin-top:auto;align-self:flex-start}
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;align-items:stretch}
+.about-photo{border-radius:34px;overflow:hidden;border:1px solid rgba(244,238,233,.08);background:#161413}
+.about-photo img{width:100%;height:100%;min-height:520px;object-fit:cover}
+.about-content{border-radius:34px;padding:46px;background:#161413;border:1px solid rgba(244,238,233,.08)}
+.about-list{display:grid;gap:16px;margin-top:28px}
+.about-item{padding:20px;border-radius:22px;background:rgba(244,238,233,.04);color:rgba(244,238,233,.76);line-height:1.6}
+.contacts{border-radius:38px;padding:54px;background:linear-gradient(135deg,#d4b08a,#d4b0ba);color:#0f0f10;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}
+.contacts h2{font-size:clamp(34px,5vw,58px);line-height:1;letter-spacing:-.05em;margin-bottom:18px}
+.contacts p{font-size:18px;line-height:1.65;max-width:620px}
+.contact-links{display:flex;flex-direction:column;gap:12px;min-width:260px}
+.contact-link{padding:16px 20px;border-radius:999px;background:rgba(15,15,16,.12);font-weight:700;text-align:center}
+@media(max-width:980px){.hero-grid,.about,.contacts{grid-template-columns:1fr}.services-grid{grid-template-columns:1fr 1fr}.portfolio-grid{grid-template-columns:1fr}.floating-card{left:20px}}
+@media(max-width:640px){.hero{padding:56px 0 44px}.services-grid{grid-template-columns:1fr}.contacts,.about-content{padding:30px 22px;border-radius:26px}.floating-card{position:static;margin-top:16px;max-width:none}.about-photo img{min-height:380px}}
+</style>
+</head>
+<body>
+<div class="page">
+<header><div class="container"><nav class="nav"><a href="index.html" class="logo">Yuliya Bilida · AI Creator</a><div class="nav-links"><a href="#services">Услуги</a><a href="#portfolio">Портфолио</a><a href="#about">Обо мне</a><a href="#contacts">Контакты</a></div></nav></div></header>
+<main>
+<section class="hero"><div class="container"><div class="hero-grid"><div><div class="badge">AI Creator / Content Manager</div><h1>Билида Юлия</h1><p class="lead">Создаю AI-визуал, контент и простые digital-решения для бизнеса: от идеи и визуальной концепции до готовых постов, Reels, сторис, кейсов и мини-сайтов.</p><div class="hero-actions"><a class="btn btn-primary" href="#contacts">Обсудить проект</a><a class="btn btn-secondary" href="#portfolio">Смотреть работы</a></div></div><div class="hero-card"><img src="img/hero.png" alt="Билида Юлия AI Creator"><div class="floating-card"><strong>AI + контент</strong><span>Помогаю бренду выглядеть современно, заметно и дороже в социальных сетях.</span></div></div></div></div></section>
+
+<section id="services"><div class="container"><h2 class="section-title">Что я могу сделать для бренда</h2><p class="section-subtitle">Я не просто генерирую красивые картинки. Я смотрю на задачу бизнеса, аудиторию, визуал аккаунта и собираю контент так, чтобы он выглядел цельно и работал на доверие.</p><div class="services-grid">
+<div class="card service-card"><div><div class="num">01 / Content</div><h3>Контент для соцсетей</h3><p>Разрабатываю идеи постов, сторис и Reels, пишу тексты, сценарии и помогаю выстроить регулярный контент для аккаунта.</p></div></div>
+<div class="card service-card"><div><div class="num">02 / Visual</div><h3>Визуальный стиль</h3><p>Создаю единое оформление ленты, хайлайтов, обложек и визуальных материалов, чтобы профиль выглядел аккуратно и узнаваемо.</p></div></div>
+<div class="card service-card"><div><div class="num">03 / AI Photo & Video</div><h3>AI-фото и видео</h3><p>Создаю AI-визуал, рекламные ролики, макро-кадры, атмосферные сцены и контент, который сложно снять обычной съёмкой.</p></div></div>
+<div class="card service-card"><div><div class="num">04 / Digital</div><h3>Мини-сайты и кейсы</h3><p>Оформляю проекты в понятные презентации, кейсы и мини-сайты, чтобы работу можно было красиво показать клиенту или аудитории.</p></div></div>
+</div></div></section>
+
+<section id="portfolio"><div class="container"><h2 class="section-title">Мои проекты</h2><p class="section-subtitle">Кейсы, которые показывают разные стороны моей работы: контент для бизнеса, AI-фото, AI-видео и визуализация идей.</p><div class="portfolio-grid">
+<article class="card portfolio-card"><img src="img/case-bg.png" alt="AI-ролик для цветочного магазина"><div class="portfolio-content"><div class="num">Ella Flowers</div><h3>AI-ролик для цветочного магазина</h3><p>Из одной фотографии букета — премиальный вертикальный ролик для Reels, TikTok и Shorts.</p><a class="btn btn-primary" href="case-flower.html">Смотреть кейс</a></div></article>
+<article class="card portfolio-card"><img src="img/aifoto/foto8.png" alt="AI-фотосессия"><div class="portfolio-content"><div class="num">AI Photo</div><h3>AI-фотосессия</h3><p>Серия портретов и визуальных образов для личного бренда, контента и портфолио.</p><a class="btn btn-primary" href="case-aifoto.html">Смотреть кейс</a></div></article>
+<article class="card portfolio-card"><img src="img/reiki/10.png" alt="Визуализация интерьера"><div class="portfolio-content"><div class="num">Interior AI</div><h3>Визуализация интерьера</h3><p>Идеи оформления комнаты с деревянными рейками, светом, зонированием и вариантами до/после.</p><a class="btn btn-primary" href="case-reiki.html">Смотреть кейс</a></div></article>
+</div></div></section>
+
+<section id="about"><div class="container"><div class="about"><div class="about-photo"><img src="img/about.png" alt="Юлия Билида"></div><div class="about-content"><h2 class="section-title">Обо мне</h2><p class="section-subtitle">Я AI-контент-менеджер. Помогаю небольшим брендам и экспертам упаковать свои идеи в современный визуал, понятный контент и аккуратную подачу.</p><div class="about-list">
+<div class="about-item">В работе с цветочным магазином я собрала не только визуал, но и логику публикаций: что показывать, когда выкладывать и как вести клиента к обращению.</div>
+<div class="about-item">Создаю контент-планы, тексты, сторис, сценарии Reels, визуальные концепции, AI-фото, AI-видео и обложки хайлайтов.</div>
+<div class="about-item">Смотрю на аккаунт глазами клиента: понятно ли, что продаётся, удобно ли заказать, выглядит ли бренд современно и вызывает ли доверие.</div>
+<div class="about-item">Мой подход — сделать красиво, понятно и применимо: чтобы бизнес мог реально использовать материалы в соцсетях.</div>
+</div></div></div></div></section>
+
+<section id="contacts"><div class="container"><div class="contacts"><div><h2>Давайте обсудим ваш проект</h2><p>Напишите мне, если нужен визуал, AI-ролик, оформление контента, разбор аккаунта, сторис, Reels или мини-сайт для презентации проекта.</p></div><div class="contact-links"><a class="contact-link" href="https://t.me/2030390" target="_blank">Telegram</a><a class="contact-link" href="mailto:3326279@gmail.com">3326279@gmail.com</a><a class="contact-link" href="tel:+375333861216">+375 33 386 12 16</a></div></div></div></section>
+</main>
+<footer><div class="container">© 2026 · Билида Юлия · AI Creator / Content Manager · Гродно, Беларусь</div></footer>
+</div>
+</body>
+</html>
