@@ -50,8 +50,32 @@ footer{padding:34px 0;color:rgba(244,238,233,.42);font-size:14px}
 @media(max-width:900px){.compare-grid{grid-template-columns:1fr}.carousel-btn{display:none}.carousel-card{flex-basis:290px}.carousel-card img{height:390px}}
 
 .hero{padding:88px 0 54px}.hero-grid{display:grid;grid-template-columns:1fr .85fr;gap:42px;align-items:center}.hero-img{border-radius:36px;padding:18px;background:linear-gradient(145deg,rgba(244,238,233,.1),rgba(244,238,233,.03));border:1px solid rgba(244,238,233,.1);box-shadow:0 40px 100px rgba(0,0,0,.36)}.hero-img img{width:100%;border-radius:26px;aspect-ratio:4/5;object-fit:cover}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.result{border-radius:36px;padding:54px;background:linear-gradient(135deg,#2a1b1f,#121110);border:1px solid rgba(212,176,138,.24)}.result p{font-size:19px;line-height:1.7;color:rgba(244,238,233,.76);max-width:820px}.next-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}@media(max-width:900px){.hero-grid,.grid{grid-template-columns:1fr}}
+
+/* Кнопка возврата наверх */
+.back-to-top{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#d4b08a;
+  color:#0f0f10!important;
+  font-size:26px;
+  font-weight:700;
+  box-shadow:0 18px 50px rgba(0,0,0,.36);
+  border:1px solid rgba(244,238,233,.16);
+  z-index:70;
+  transition:.25s ease;
+}
+.back-to-top:hover{transform:translateY(-4px);background:#f4eee9}
+@media(max-width:640px){.back-to-top{right:16px;bottom:16px;width:48px;height:48px}}
+
 </style></head>
-<body><div class="page"><header><div class="container"><nav class="nav"><a class="logo" href="index.html">Yuliya Bilida · AI Creator</a><div class="nav-links"><a href="index.html#portfolio">Портфолио</a><a href="case-flower.html">Ella Flowers</a><a href="case-reiki.html">Интерьер</a><a href="index.html#contacts">Связаться</a></div></nav></div></header>
+<body><div class="page" id="top"><header><div class="container"><nav class="nav"><a class="logo" href="index.html">Yuliya Bilida · AI Creator</a><div class="nav-links"><a href="index.html#portfolio">Портфолио</a><a href="case-flower.html">Ella Flowers</a><a href="case-reiki.html">Интерьер</a><a href="index.html#contacts">Связаться</a></div></nav></div></header>
 <main>
 <section class="hero"><div class="container"><div class="hero-grid"><div><div class="badge">Кейс · AI-фотосессия</div><h1>AI-фотосессия для личного бренда и визуального портфолио</h1><p class="lead">Серия образов, созданных с помощью нейросетей: от естественных портретов до fashion-кадров, цветочных съёмок и стилизованных визуальных концепций.</p><div class="hero-actions"><a class="btn btn-primary" href="#gallery">Смотреть карусель</a><a class="btn btn-secondary" href="index.html">На главную</a></div></div><div class="hero-img"><img src="img/aifoto/foto4.jpg" alt="AI портрет"></div></div></div></section>
 <section><div class="container"><h2 class="section-title">Что было сделано</h2><p class="section-subtitle">Я создала набор визуальных образов под разные задачи: экспертность, эстетика, личный бренд, творческое портфолио и рекламные стилизации.</p><div class="grid"><div class="card"><div class="num">01 · идея</div><h3>Разные визуальные роли</h3><p>Один человек может выглядеть по-разному в зависимости от задачи: эксперт, модель, героиня бренда, творческий персонаж.</p></div><div class="card"><div class="num">02 · стиль</div><h3>Единая эстетика</h3><p>Для кадров сохранена премиальная атмосфера: мягкий свет, аккуратная цветокоррекция, выразительные позы и чистая композиция.</p></div><div class="card"><div class="num">03 · применение</div><h3>Контент для соцсетей</h3><p>Такие фото можно использовать для профиля, сайта, презентации услуг, постов, обложек и визуального позиционирования.</p></div></div></div></section>
@@ -90,4 +114,5 @@ document.querySelectorAll('.carousel').forEach((carousel)=>{
   if(next){next.addEventListener('click',()=>track.scrollBy({left:380,behavior:'smooth'}));}
 });
 </script>
+<a class="back-to-top" href="#top" aria-label="Вернуться в начало">↑</a>
 </body></html>

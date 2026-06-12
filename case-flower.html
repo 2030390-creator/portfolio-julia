@@ -77,10 +77,34 @@ footer{padding:34px 0;color:rgba(244,238,233,.42);font-size:14px}
 @media(max-width:760px){.presentation-block{grid-template-columns:1fr;padding:28px;border-radius:24px}.presentation-block .actions{margin-top:20px}}
 
 @media(max-width:760px){.case-page{padding:24px 14px 40px}.case-hero{min-height:560px;padding:34px 24px;border-radius:26px}.case-grid,.video-section,.next-projects{grid-template-columns:1fr}.case-card.big{grid-column:span 1}.video-info,.result{padding:26px;border-radius:22px}}
+
+/* Кнопка возврата наверх */
+.back-to-top{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#d4b08a;
+  color:#0f0f10!important;
+  font-size:26px;
+  font-weight:700;
+  box-shadow:0 18px 50px rgba(0,0,0,.36);
+  border:1px solid rgba(244,238,233,.16);
+  z-index:70;
+  transition:.25s ease;
+}
+.back-to-top:hover{transform:translateY(-4px);background:#f4eee9}
+@media(max-width:640px){.back-to-top{right:16px;bottom:16px;width:48px;height:48px}}
+
 </style>
 </head>
 <body>
-<section class="case-page"><div class="case-wrap"><a class="top-link" href="index.html">← Вернуться на главную</a>
+<section class="case-page" id="top"><div class="case-wrap"><a class="top-link" href="index.html">← Вернуться на главную</a>
 <div class="case-hero"><div class="case-hero-content"><div class="badge">ELLA Flowers · AI Content Case</div><h1 class="case-title">Имиджевый AI-ролик для цветочного магазина</h1><p class="case-subtitle">Как из одной фотографии букета был создан премиальный визуальный ролик для Reels, TikTok и Shorts — с атмосферой luxury-съёмки, макро-кадрами и финальной презентацией продукта как объекта искусства.</p></div></div>
 <div class="video-section"><div class="video-info card"><div class="num">Видео проекта</div><h2>Финальный AI-ролик</h2><p>Ролик создан в вертикальном формате для социальных сетей. В нём букет раскрывается через макро-детали, мягкий свет, премиальную атмосферу и финальный кадр, где композиция выглядит как объект искусства.</p></div><div class="video-phone"><div class="video-wrapper"><video controls playsinline preload="metadata" poster="img/case-bg.jpg"><source src="video/flower-case.mp4" type="video/mp4">Ваш браузер не поддерживает видео.</video></div></div></div>
 <div class="case-grid">
@@ -106,4 +130,5 @@ footer{padding:34px 0;color:rgba(244,238,233,.42);font-size:14px}
 <section style="padding:60px 0 0"><h2 class="section-title">Другие проекты</h2><div class="next-projects"><a class="project-mini" href="case-aifoto.html"><img src="img/aifoto/foto8.jpg" alt="AI-фотосессия"><div><h3>AI-фотосессия</h3><p>Портреты и образы для личного бренда.</p></div></a><a class="project-mini" href="case-reiki.html"><img src="img/reiki/10.jpg" alt="AI-визуализация интерьера"><div><h3>Визуализация интерьера</h3><p>Идеи ремонта с деревянными рейками.</p></div></a></div></section>
 <footer>© 2026 · AI-визуал и контент · Юлия Билида</footer>
 </div></section>
+<a class="back-to-top" href="#top" aria-label="Вернуться в начало">↑</a>
 </body></html>
