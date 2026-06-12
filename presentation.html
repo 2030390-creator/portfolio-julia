@@ -592,156 +592,414 @@
       letter-spacing:.08em;
     }
   /* =========================
-   PHONE LANDSCAPE
+   PHONE LANDSCAPE — горизонтальный телефон
+   Слайды остаются с переключением стрелками, но внутри слайда можно прокрутить текст
 ========================= */
 
 @media screen and (max-width: 950px) and (orientation: landscape){
 
-.slide{
-  padding:18px 24px;
-}
+  body{
+    overflow:hidden;
+  }
 
-h1{
-  font-size:42px;
-}
+  .deck{
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+  }
 
-h2{
-  font-size:28px;
-  margin-bottom:12px;
-}
+  .slide{
+    padding:18px 22px 74px;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
 
-h3{
-  font-size:16px;
-}
+  .slide::-webkit-scrollbar{
+    width:6px;
+  }
 
-p,
-li{
-  font-size:13px;
-  line-height:1.4;
-}
+  .slide::-webkit-scrollbar-track{
+    background:rgba(244,238,233,.05);
+  }
 
-.small-label{
-  font-size:11px;
-  margin-bottom:8px;
-}
+  .slide::-webkit-scrollbar-thumb{
+    background:rgba(212,176,138,.45);
+    border-radius:999px;
+  }
 
-.slide-number{
-  font-size:18px;
-  top:14px;
-  left:18px;
-}
+  h1{
+    font-size:38px;
+    line-height:.95;
+    margin-bottom:12px;
+  }
 
-.top-nav{
-  top:12px;
-  right:12px;
-}
+  h2{
+    font-size:26px;
+    line-height:1.05;
+    margin-bottom:12px;
+  }
 
-.top-nav a{
-  padding:6px 12px;
-  font-size:12px;
-}
+  h3{
+    font-size:16px;
+    margin-bottom:5px;
+  }
 
-/* Слайд 3 */
-.service-card{
-  width:180px;
-  height:170px;
-}
+  p,
+  li{
+    font-size:12px;
+    line-height:1.35;
+  }
 
-.service-card img{
-  height:90px;
-}
+  ul{
+    gap:7px;
+  }
 
-/* Слайд 6 */
-.flow-box{
-  width:170px;
-  font-size:16px;
-  padding:12px;
-}
+  .small-label{
+    font-size:10px;
+    margin-bottom:7px;
+  }
 
-.flow-arrow{
-  font-size:18px;
-}
+  .slide-number{
+    font-size:17px;
+    top:12px;
+    left:16px;
+  }
 
-/* Слайд 7 */
-.slide-7-layout{
-  grid-template-columns:1fr 320px;
-  gap:20px;
-}
+  .top-nav{
+    top:10px;
+    right:10px;
+    gap:8px;
+  }
 
-.text-block{
-  margin-bottom:12px;
-}
+  .top-nav a{
+    padding:6px 10px;
+    font-size:11px;
+  }
 
-/* Слайд 8 */
-.slide-8{
-  grid-template-columns:280px 1fr;
-  gap:20px;
-}
+  .nav{
+    bottom:10px;
+    right:12px;
+    gap:8px;
+  }
 
-.refs-grid{
-  grid-template-columns:repeat(2,1fr);
-  height:auto;
-}
+  .nav button{
+    width:42px;
+    height:42px;
+    font-size:22px;
+  }
 
-.ref-card{
-  height:180px;
-}
+  .progress{
+    bottom:20px;
+    left:16px;
+    font-size:11px;
+  }
 
-.ref-card img{
-  height:130px;
-}
+  .two-col{
+    height:auto;
+    min-height:100%;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    align-items:center;
+  }
 
-/* Слайд 9 */
-.timeline-line{
-  grid-template-columns:repeat(5,1fr);
-  gap:8px;
-}
+  .text{
+    max-width:100%;
+  }
 
-.timeline-arrow{
-  display:none;
-}
+  .image-card{
+    border-radius:16px;
+  }
 
-.step{
-  min-height:110px;
-  padding:10px;
-}
+  /* Слайд 1 */
+  .slide-1 .image-card{
+    height:68vh;
+    max-width:320px;
+  }
 
-.step-icon{
-  font-size:18px;
-}
+  /* Слайд 2 */
+  .slide-2{
+    grid-template-columns:1fr 260px;
+  }
 
-/* Слайд 12 */
-.work-card{
-  height:200px;
-}
+  .slide-2 .image-card{
+    height:70vh;
+  }
 
-.work-card img{
-  height:120px;
-}
+  /* Слайд 3 */
+  .services-wrapper{
+    gap:10px;
+  }
 
-.work-card h3{
-  font-size:16px;
-}
+  .services-row{
+    gap:10px;
+  }
 
-.work-card p{
-  font-size:11px;
-}
+  .service-card{
+    width:165px;
+    height:145px;
+    border-radius:14px;
+  }
 
-/* Слайд 13 */
-.contacts-slide{
-  padding:30px;
-}
+  .service-card img{
+    height:76px;
+  }
 
-.bottom-gallery img{
-  height:130px;
-}
+  .service-card div{
+    padding:10px;
+  }
 
-.cta{
-  font-size:15px;
-  padding:10px 16px;
-}
+  .service-card h3{
+    font-size:14px;
+    margin-bottom:4px;
+  }
 
-}  
+  .service-card p{
+    font-size:10px;
+    line-height:1.25;
+  }
+
+  /* Слайд 4 */
+  .slide-4 .image-card{
+    height:68vh;
+    max-width:260px;
+  }
+
+  /* Слайд 5 и 10 */
+  .comparison{
+    grid-template-columns:1fr 24px 1fr;
+    gap:10px;
+  }
+
+  .arrow{
+    font-size:24px;
+  }
+
+  .caption{
+    font-size:11px;
+    margin-top:5px;
+  }
+
+  .slide-5 .comparison .image-card,
+  .slide-10 .comparison .image-card{
+    height:260px;
+  }
+
+  /* Слайд 6 */
+  .slide-6-layout{
+    height:auto;
+    min-height:100%;
+    grid-template-columns:1fr 220px;
+    gap:18px;
+    overflow:visible;
+  }
+
+  .goal{
+    margin-top:10px;
+    grid-template-columns:30px 1fr;
+    gap:8px;
+  }
+
+  .goal span{
+    font-size:13px;
+  }
+
+  .goal p{
+    font-size:12px;
+  }
+
+  .flow-box{
+    width:170px;
+    font-size:15px;
+    padding:10px 12px;
+    border-radius:14px;
+  }
+
+  .flow-arrow{
+    font-size:17px;
+    margin:2px 0;
+  }
+
+  /* Слайд 7 */
+  .slide-7-layout{
+    height:auto;
+    min-height:100%;
+    grid-template-columns:1fr 280px;
+    gap:18px;
+  }
+
+  .text-block{
+    margin-bottom:10px;
+  }
+
+  .text-block strong{
+    font-size:13px;
+    margin-bottom:4px;
+  }
+
+  .text-block p{
+    font-size:12px;
+    line-height:1.35;
+  }
+
+  .slide-7-image{
+    border-radius:16px;
+  }
+
+  .slide-7-bottom{
+    margin-top:8px;
+    padding:8px 10px;
+    font-size:12px;
+  }
+
+  /* Слайд 8 */
+  .slide-8{
+    grid-template-columns:240px 1fr;
+    gap:16px;
+    height:auto;
+    min-height:100%;
+  }
+
+  .slide-8 h2{
+    font-size:25px;
+  }
+
+  .slide-8 li{
+    font-size:11px;
+  }
+
+  .refs-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+    height:auto;
+  }
+
+  .ref-card{
+    height:145px;
+    border-radius:14px;
+  }
+
+  .ref-card img{
+    height:104px;
+    object-fit:cover;
+  }
+
+  .ref-card p{
+    min-height:41px;
+    padding:6px;
+    font-size:9px;
+    line-height:1.2;
+  }
+
+  /* Слайд 9 */
+  .timeline-full{
+    height:auto;
+    min-height:100%;
+    gap:14px;
+  }
+
+  .timeline-line{
+    grid-template-columns:repeat(5,1fr);
+    gap:8px;
+  }
+
+  .timeline-arrow{
+    display:none;
+  }
+
+  .step{
+    min-height:98px;
+    padding:8px;
+    border-radius:14px;
+  }
+
+  .step-icon{
+    font-size:16px;
+    margin-bottom:4px;
+  }
+
+  .step h3{
+    font-size:13px;
+  }
+
+  .step p{
+    font-size:10px;
+    line-height:1.25;
+  }
+
+  .tools{
+    font-size:11px;
+    padding:8px 14px;
+  }
+
+  /* Слайд 11 */
+  .full-bg{
+    height:auto;
+    min-height:100%;
+    align-items:flex-start;
+    padding-top:36px;
+  }
+
+  .full-bg .text{
+    margin-left:0;
+    max-width:78%;
+  }
+
+  /* Слайд 12 */
+  .work-grid{
+    gap:10px;
+  }
+
+  .work-card{
+    height:160px;
+    border-radius:14px;
+  }
+
+  .work-card img{
+    height:94px;
+  }
+
+  .work-card div{
+    padding:10px;
+  }
+
+  .work-card h3{
+    font-size:14px;
+    margin-bottom:3px;
+  }
+
+  .work-card p{
+    font-size:10px;
+    line-height:1.25;
+  }
+
+  .cta{
+    font-size:13px;
+    padding:8px 12px;
+    margin-top:14px;
+  }
+
+  /* Слайд 13 */
+  .contacts-slide{
+    padding:26px 26px 66px;
+    grid-template-rows:auto auto;
+    gap:14px;
+  }
+
+  .contacts-content{
+    height:auto;
+    align-items:flex-start;
+    padding-top:20px;
+  }
+
+  .bottom-gallery{
+    gap:8px;
+  }
+
+  .bottom-gallery img{
+    height:110px;
+    border-radius:12px;
+  }
+}
   </style>
 </head>
 
