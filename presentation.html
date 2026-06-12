@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кейс Ella Flowers — Юлия Билида</title>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    body{
+      font-family:Arial,sans-serif;
+      background:#0F0F10;
+      color:#F4EEE9;
+      overflow:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .deck{
+      width:100vw;
+      height:100vh;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .top-nav{
+      position:fixed;
+      top:24px;
+      right:24px;
+      display:flex;
+      gap:12px;
+      z-index:80;
+    }
+
+    .top-nav a{
+      padding:10px 18px;
+      border-radius:999px;
+      border:1px solid rgba(244,238,233,.14);
+      background:rgba(22,20,19,.76);
+      backdrop-filter:blur(12px);
+      color:#F4EEE9;
+      font-size:14px;
+      transition:.25s;
+    }
+
+    .top-nav a:hover{
+      background:#D4B08A;
+      color:#0F0F10;
+    }
+
+    .slide{
+      position:absolute;
+      inset:0;
+      padding:42px 56px;
+      background:#0F0F10;
+      opacity:0;
+      transform:translateX(40px);
+      pointer-events:none;
+      transition:.55s ease;
+    }
+
+    .slide.active{
+      opacity:1;
+      transform:translateX(0);
+      pointer-events:auto;
+      z-index:2;
+    }
+
+    .slide-number{
+      position:absolute;
+      top:28px;
+      left:40px;
+      font-size:26px;
+      color:#D4B08A;
+      z-index:10;
+      letter-spacing:.06em;
+    }
+
+    h1{font-size:66px;line-height:.95;letter-spacing:-.06em;margin-bottom:18px}
+    h2{font-size:46px;line-height:1;letter-spacing:-.045em;margin-bottom:22px}
+    h3{font-size:21px;color:#D4B08A;margin-bottom:8px}
+
+    p,li{
+      font-size:18px;
+      line-height:1.5;
+      color:rgba(244,238,233,.78);
+    }
+
+    ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+    li::before{content:"✦";color:#D4B08A;margin-right:10px}
+
+    .accent{color:#D4B08A}
+
+    .two-col{
+      height:100%;
+      display:grid;
+      grid-template-columns:1fr 1.1fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .text{max-width:620px}
+
+    .small-label{
+      font-size:15px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:rgba(244,238,233,.5);
+      margin-bottom:12px;
+    }
+
+    .image-card{
+      border:1px solid rgba(244,238,233,.14);
+      border-radius:24px;
+      overflow:hidden;
+      background:rgba(244,238,233,.04);
+    }
+
+    .image-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .contain img{object-fit:contain}
+
+    .comparison{
+      display:grid;
+      grid-template-columns:1fr 36px 1fr;
+      gap:16px;
+      align-items:center;
+    }
+
+    .arrow{
+      color:#D4B08A;
+      font-size:36px;
+      text-align:center;
+    }
+
+    .caption{
+      text-align:center;
+      margin-top:8px;
+      font-size:14px;
+      color:rgba(244,238,233,.55);
+    }
+
+    .slide-1 .image-card{
+      height:74vh;
+      max-width:520px;
+      justify-self:center;
+    }
+
+    .slide-2{
+      grid-template-columns:1fr 430px;
+    }
+
+    .slide-2 .image-card{
+      height:calc(100vh - 84px);
+      border-radius:26px;
+    }
+
+    .slide-2 .image-card img{
+      object-fit:cover;
+      object-position:center top;
+    }
+
+    .services-wrapper{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .services-row{
+      display:flex;
+      gap:18px;
+      justify-content:center;
+    }
+
+    .service-card{
+      width:280px;
+      height:250px;
+      border:1px solid rgba(244,238,233,.14);
+      border-radius:20px;
+      background:rgba(244,238,233,.055);
+      overflow:hidden;
+    }
+
+    .service-card img{
+      width:100%;
+      height:145px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .service-card div{
+      padding:16px;
+    }
+
+    .service-card p{
+      font-size:15px;
+      color:rgba(244,238,233,.62);
+    }
+
+    .slide-4 .image-card{
+      height:76vh;
+      max-width:430px;
+      justify-self:center;
+    }
+
+    .slide-4 .image-card img{
+      object-fit:contain;
+    }
+
+    .slide-5 .comparison .image-card{
+      height:420px;
+    }
+
+    .slide-6-layout{
+      height:100%;
+      position:relative;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+      align-items:center;
+      overflow:hidden;
+    }
+
+    .slide-6-bg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:right center;
+      opacity:.42;
+    }
+
+    .slide-6-left,
+    .slide-6-flow{
+      position:relative;
+      z-index:2;
+    }
+
+    .goal{
+      margin-top:22px;
+      display:grid;
+      grid-template-columns:44px 1fr;
+      gap:12px;
+      max-width:460px;
+    }
+
+    .goal span{
+      color:#D4B08A;
+      font-size:18px;
+    }
+
+    .goal p{font-size:18px}
+
+    .slide-6-flow{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .flow-box{
+      width:260px;
+      padding:22px 18px;
+      border-radius:18px;
+      border:1px solid rgba(212,176,138,.35);
+      background:rgba(46,34,25,.72);
+      color:#F4EEE9;
+      text-align:center;
+      font-size:22px;
+      backdrop-filter:blur(8px);
+    }
+
+    .flow-arrow{
+      color:#D4B08A;
+      font-size:30px;
+      line-height:1.2;
+      margin:4px 0;
+    }
+
+    .slide-7-layout{
+      height:100%;
+      display:grid;
+      grid-template-columns:1fr 560px;
+      gap:44px;
+      align-items:center;
+    }
+
+    .slide-7-text{max-width:700px}
+
+    .text-block{margin-bottom:24px}
+
+    .text-block strong{
+      display:block;
+      color:#D4B08A;
+      margin-bottom:8px;
+      font-size:18px;
+    }
+
+    .text-block p{
+      font-size:18px;
+      line-height:1.65;
+      color:rgba(244,238,233,.85);
+    }
+
+    .slide-7-image{
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(244,238,233,.14);
+      background:rgba(244,238,233,.04);
+    }
+
+    .slide-7-image img{
+      width:100%;
+      display:block;
+      object-fit:cover;
+    }
+
+    .slide-7-bottom{
+      margin-top:16px;
+      border:1px solid rgba(244,238,233,.14);
+      border-radius:16px;
+      padding:14px 18px;
+      color:rgba(244,238,233,.7);
+      text-align:center;
+      background:rgba(244,238,233,.04);
+    }
+
+    .slide-8{
+      display:grid;
+      grid-template-columns:420px 1fr;
+      gap:40px;
+      align-items:center;
+      height:100%;
+    }
+
+    .slide-8 .text{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      height:100%;
+    }
+
+    .slide-8 h2{font-size:42px}
+    .slide-8 li{font-size:18px}
+
+    .refs-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      width:100%;
+      height:78vh;
+      align-items:stretch;
+    }
+
+    .ref-card{
+      border:1px solid rgba(244,238,233,.14);
+      border-radius:18px;
+      overflow:hidden;
+      background:rgba(244,238,233,.04);
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+
+    .ref-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .ref-card p{
+      font-size:14px;
+      padding:14px;
+      text-align:center;
+      color:rgba(244,238,233,.58);
+      min-height:58px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(244,238,233,.04);
+    }
+
+    .timeline-full{
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:36px;
+    }
+
+    .timeline-line{
+      display:grid;
+      grid-template-columns:1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+      gap:12px;
+      align-items:center;
+    }
+
+    .step{
+      border:1px solid rgba(244,238,233,.14);
+      border-radius:22px;
+      background:rgba(244,238,233,.055);
+      padding:20px;
+      min-height:155px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .step-icon{
+      font-size:30px;
+      color:#D4B08A;
+      margin-bottom:8px;
+    }
+
+    .step h3{font-size:20px}
+    .step p{font-size:14px}
+
+    .timeline-arrow{
+      font-size:30px;
+      color:#D4B08A;
+    }
+
+    .tools{
+      align-self:center;
+      border:1px solid rgba(244,238,233,.14);
+      border-radius:999px;
+      padding:12px 24px;
+      color:rgba(244,238,233,.7);
+      background:rgba(244,238,233,.04);
+      font-size:15px;
+    }
+
+    .slide-10 .comparison .image-card{
+      height:460px;
+    }
+
+    .full-bg{
+      height:100%;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .full-bg::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,rgba(15,15,16,.95),rgba(15,15,16,.65),rgba(15,15,16,.18));
+      z-index:1;
+    }
+
+    .bg-img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:right center;
+      opacity:.95;
+    }
+
+    .full-bg .text{
+      position:relative;
+      z-index:2;
+      margin-left:20px;
+    }
+
+    .work-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .work-card{
+      position:relative;
+      border:1px solid rgba(244,238,233,.14);
+      border-radius:22px;
+      overflow:hidden;
+      background:rgba(244,238,233,.055);
+      height:285px;
+    }
+
+    .work-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .work-card div{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      padding:18px;
+      background:linear-gradient(180deg,rgba(15,15,16,0),rgba(15,15,16,.9));
+    }
+
+    .work-card h3{
+      font-size:22px;
+      margin-bottom:6px;
+      color:#D4B08A;
+    }
+
+    .work-card p{
+      font-size:14px;
+      color:rgba(244,238,233,.76);
+    }
+
+    .cta{
+      margin-top:26px;
+      display:inline-flex;
+      padding:14px 22px;
+      border-radius:999px;
+      border:1px solid rgba(212,176,138,.45);
+      color:#D4B08A;
+      background:rgba(212,176,138,.08);
+      font-size:21px;
+    }
+
+    .contacts-slide{
+      display:grid;
+      grid-template-columns:1fr;
+      grid-template-rows:1fr 240px;
+      gap:28px;
+      padding:70px 70px 34px;
+    }
+
+    .contacts-content{
+      display:flex;
+      align-items:center;
+      height:100%;
+    }
+
+    .bottom-gallery{
+      width:100%;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:14px;
+      align-items:end;
+    }
+
+    .bottom-gallery img{
+      width:100%;
+      height:280px;
+      object-fit:cover;
+      border-radius:18px;
+      border:1px solid rgba(244,238,233,.14);
+      display:block;
+    }
+
+    .nav{
+      position:fixed;
+      bottom:28px;
+      right:34px;
+      display:flex;
+      gap:12px;
+      z-index:20;
+    }
+
+    .nav button{
+      width:52px;
+      height:52px;
+      border-radius:50%;
+      border:1px solid rgba(244,238,233,.2);
+      background:rgba(244,238,233,.08);
+      color:#F4EEE9;
+      font-size:26px;
+      cursor:pointer;
+      transition:.25s;
+    }
+
+    .nav button:hover{
+      background:#D4B08A;
+      color:#0F0F10;
+    }
+
+    .progress{
+      position:fixed;
+      left:34px;
+      bottom:34px;
+      z-index:20;
+      color:rgba(244,238,233,.55);
+      font-size:14px;
+      letter-spacing:.08em;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="top-nav">
+  <a href="index.html">← Главная</a>
+  <a href="case-flower.html">← Кейс</a>
+</div>
+
+<div class="deck">
+
+  <section class="slide active">
+    <div class="slide-number">01</div>
+    <div class="two-col slide-1">
+      <div class="text">
+        <p class="small-label">Обложка</p>
+        <h1>Юлия<br><span class="accent">Билида</span></h1>
+        <p class="accent">AI Creator • Контент-менеджер</p><br>
+        <p>Я помогаю брендам выделяться через визуальные концепции, AI-контент и сильные идеи.</p>
+      </div>
+      <div class="image-card contain"><img src="img/prezent/1.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-number">02</div>
+    <div class="two-col slide-2">
+      <div class="text">
+        <p class="small-label">С чем ко мне приходят</p>
+        <h2>С чем ко мне приходят</h2>
+        <ul>
+          <li>Выделиться среди конкурентов</li>
+          <li>Упаковать бренд визуально</li>
+          <li>Создать контент для соцсетей</li>
+          <li>Разработать нестандартную рекламную идею</li>
+          <li>Использовать AI для создания контента</li>
+        </ul>
+      </div>
+      <div class="image-card"><img src="img/prezent/13.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-number">03</div>
+    <div class="two-col">
+      <div class="text">
+        <p class="small-label">Что я делаю</p>
+        <h2>Что я делаю</h2>
+        <p>Создаю визуальный контент для брендов: от AI-фото и видео до упаковки профиля и мини-сайтов.</p>
+      </div>
+
+      <div class="services-wrapper">
+        <div class="services-row">
+          <div class="service-card"><img src="img/prezent/3-1.jpg"><div><h3>AI-фото</h3><p>Визуалы для бренда</p></div></div>
+          <div class="service-card"><img src="img/prezent/3-2.jpg"><div><h3>AI-видео</h3><p>Ролики и промо</p></div></div>
+          <div class="service-card"><img src="img/prezent/3-3.jpg"><div><h3>Контент</h3><p>Посты, Reels, сторис</p></div></div>
+        </div>
+        <div class="services-row">
+          <div class="service-card"><img src="img/prezent/3-4.jpg"><div><h3>Упаковка</h3><p>Профиль и стиль</p></div></div>
+          <div class="service-card"><img src="img/prezent/3-5.jpg"><div><h3>Сайты</h3><p>Портфолио и лендинги</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-number">04</div>
+    <div class="two-col slide-4">
+      <div class="text">
+        <p class="small-label">Кейс: Ella Flowers</p>
+        <h2>Букет как произведение искусства</h2>
+        <p>Как показать букет не как товар, а как музейный экспонат.</p>
+      </div>
+      <div class="image-card"><img src="img/prezent/4.jpg"></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-number">05</div>
+    <div class="two-col slide-5">
+      <div class="text">
+        <p class="small-label">Точка А</p>
+        <h2>С чего я начинала</h2>
+        <ul>
+          <li>Большинство роликов в цветочной нише показывают только букет и цену</li>
+          <li>Контент выглядит красиво, но быстро забывается</li>
+          <li>Не хватает эмоциональной истории, которая выделяет бренд</li>
+        </ul>
+      </div>
+      <div class="comparison">
+        <div><div class="image-card"><img src="img/prezent/5-1.jpg"></div><p class="caption">Типичный контент</p></div>
+        <div class="arrow">→</div>
+        <div><div class="image-card"><img src="img/prezent/4.jpg"></div><p class="caption">Мой подход</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-6">
+    <div class="slide-number">06</div>
+    <div class="slide-6-layout">
+      <img class="slide-6-bg" src="img/prezent/6.jpg">
+      <div class="slide-6-left">
+        <p class="small-label">Что нужно было решить</p>
+        <h2>Что нужно было решить</h2>
+        <p class="accent">Цели проекта:</p>
+        <div class="goal"><span>01</span><p>Создать ролик, который выделится среди типичного контента цветочных магазинов.</p></div>
+        <div class="goal"><span>02</span><p>Повысить эмоциональную ценность букета без прямой продажи.</p></div>
+      </div>
+      <div class="slide-6-flow">
+        <div class="flow-box">Внимание</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box">Эмоция</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-box">Запоминаемость<br>бренда</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-7">
+    <div class="slide-number">07</div>
+    <div class="slide-7-layout">
+      <div class="slide-7-text">
+        <p class="small-label">Мой подход ✨</p>
+        <h2>Мой подход</h2>
+        <div class="text-block"><strong>Идея:</strong><p>Показать букет не как товар, а как произведение искусства.</p></div>
+        <div class="text-block"><strong>Формула решения:</strong><p>Я выбрала концепцию музейного экспоната, потому что она помогает переключить внимание зрителя с цены на ценность и красоту работы флориста.</p></div>
+        <div class="text-block"><strong>Через какую эмоцию работает:</strong><p>Восхищение, эстетическое удовольствие, интерес и желание рассматривать детали.</p></div>
+      </div>
+      <div>
+        <div class="slide-7-image"><img src="img/prezent/7.jpg"></div>
+        <div class="slide-7-bottom">Макро деталей → Композиция → Экспонат</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-number">08</div>
+    <div class="slide-8">
+      <div class="text">
+        <p class="small-label">Референсы</p>
+        <h2>Визуальные ориентиры</h2>
+        <ul>
+          <li>Музейные экспозиции — ощущение ценности</li>
+          <li>Ювелирная эстетика — премиальность</li>
+          <li>Арт-фотография цветов — эмоция</li>
+          <li>Предмет под стеклом — эффект уникальности</li>
+        </ul>
+      </div>
+      <div class="refs-grid">
+        <div class="ref-card"><img src="img/prezent/8-1.jpg"><p>Музейная экспозиция</p></div>
+        <div class="ref-card"><img src="img/prezent/8-2.jpg"><p>Ювелирная эстетика</p></div>
+        <div class="ref-card"><img src="img/prezent/8-3.jpg"><p>Арт-фотография</p></div>
+        <div class="ref-card"><img src="img/prezent/8-4.jpg"><p>Предмет под стеклом</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-number">09</div>
+    <div class="timeline-full">
+      <div class="text"><p class="small-label">Реализация</p><h2>Как я это сделала</h2></div>
+      <div class="timeline-line">
+        <div class="step"><div class="step-icon">✦</div><h3>1. Идея</h3><p>Концепция и сценарий</p></div>
+        <div class="timeline-arrow">→</div>
+        <div class="step"><div class="step-icon">▧</div><h3>2. AI-кадры</h3><p>Макро и детали</p></div>
+        <div class="timeline-arrow">→</div>
+        <div class="step"><div class="step-icon">🎞</div><h3>3. Видео</h3><p>Анимация сцен</p></div>
+        <div class="timeline-arrow">→</div>
+        <div class="step"><div class="step-icon">✂</div><h3>4. Монтаж</h3><p>Сборка в CapCut</p></div>
+        <div class="timeline-arrow">→</div>
+        <div class="step"><div class="step-icon">✺</div><h3>5. Финал</h3><p>Цвет и экспорт</p></div>
+      </div>
+      <div class="tools">Инструменты: ChatGPT • Midjourney • Seedance • CapCut</div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-number">10</div>
+    <div class="two-col slide-10">
+      <div class="text">
+        <p class="small-label">Результат</p>
+        <h2>Что получилось</h2>
+        <ul>
+          <li>Создан имиджевый ролик для цветочного магазина Ella Flowers</li>
+          <li>Букет показан не как товар, а как объект искусства</li>
+          <li>Сформирован уникальный визуальный образ, который выделяется среди типичного контента цветочной ниши</li>
+          <li>Концепция усиливает восприятие бренда как эстетичного и премиального</li>
+        </ul>
+        <p class="accent" style="margin-top:24px;">
+          Визуальный эффект: от демонстрации букета → к эмоциональной истории и художественной подаче
+        </p>
+      </div>
+      <div class="comparison">
+        <div><div class="image-card"><img src="img/prezent/5-1.jpg"></div><p class="caption">До</p></div>
+        <div class="arrow">→</div>
+        <div><div class="image-card"><img src="img/prezent/10.jpg"></div><p class="caption">После</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-11">
+    <div class="slide-number">11</div>
+    <div class="full-bg">
+      <img class="bg-img" src="img/prezent/11.jpg">
+      <div class="text">
+        <p class="small-label">Выводы</p>
+        <h2>Что я вынесла из проекта</h2>
+
+        <p class="accent">Чему я научилась:</p><br>
+        <ul>
+          <li>Сильная идея важнее просто красивой картинки</li>
+          <li>Даже привычный продукт можно показать через необычную концепцию</li>
+          <li>AI-инструменты работают эффективнее, когда есть чёткая творческая задача</li>
+        </ul>
+
+        <br>
+        <p class="accent">Что бы я усилила при повторе проекта:</p><br>
+        <ul>
+          <li>Расширила бы концепцию на серию роликов и визуальную систему бренда</li>
+          <li>Добавила бы несколько сюжетных сцен для более глубокого эмоционального вовлечения зрителя</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="slide-number">12</div>
+    <div class="two-col">
+      <div class="text">
+        <p class="small-label">Работа со мной</p>
+        <h2>Как начать работу</h2>
+
+        <p class="accent">Форматы работы:</p><br>
+        <ul>
+          <li>AI-фото и AI-видео</li>
+          <li>Контент для Instagram</li>
+          <li>Упаковка профиля и бренда</li>
+          <li>Мини-сайты и портфолио</li>
+        </ul>
+
+        <br>
+        <p class="accent">Что можно заказать:</p><br>
+        <ul>
+          <li>Имиджевый ролик</li>
+          <li>Контент-пакет для соцсетей</li>
+          <li>Полную упаковку визуального стиля</li>
+        </ul>
+
+        <p class="cta">Обсудить проект → Telegram: @yuliya2030390</p>
+      </div>
+
+      <div class="work-grid">
+        <div class="work-card"><img src="img/prezent/12-1.jpg"><div><h3>AI-видео</h3><p>Имиджевые ролики и Reels</p></div></div>
+        <div class="work-card"><img src="img/prezent/12-2.jpg"><div><h3>Мини-сайты</h3><p>Портфолио и лендинги</p></div></div>
+        <div class="work-card"><img src="img/prezent/12-3.jpg"><div><h3>Контент</h3><p>Посты, карусели и Stories</p></div></div>
+        <div class="work-card"><img src="img/prezent/12-4.jpg"><div><h3>Упаковка</h3><p>Профиль, визуал и айдентика</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide contacts-slide">
+    <div class="slide-number">13</div>
+    <div class="contacts-content">
+      <div class="text">
+        <h2>Юлия Билида</h2>
+        <p class="accent">AI Creator</p><br>
+        <p>Telegram: @yuliya2030390</p>
+        <p>Instagram: @jb.ai.content</p>
+        <p>Сайт: yulia-bilida-portfolio.netlify.app</p><br>
+        <p>Спасибо за внимание ✨</p>
+      </div>
+    </div>
+
+    <div class="bottom-gallery">
+      <img src="img/prezent/13-1.jpg">
+      <img src="img/prezent/13-2.jpg">
+      <img src="img/prezent/13-3.jpg">
+      <img src="img/prezent/13-4.jpg">
+      <img src="img/prezent/13-5.jpg">
+    </div>
+  </section>
+
+</div>
+
+<div class="progress" id="progress">01 / 13</div>
+
+<div class="nav">
+  <button onclick="prevSlide()">‹</button>
+  <button onclick="nextSlide()">›</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const progress = document.getElementById('progress');
+  let current = 0;
+
+  function showSlide(index){
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[index].classList.add('active');
+    progress.textContent =
+      String(index + 1).padStart(2, '0') +
+      ' / ' +
+      String(slides.length).padStart(2, '0');
+  }
+
+  function nextSlide(){
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }
+
+  function prevSlide(){
+    current = (current - 1 + slides.length) % slides.length;
+    showSlide(current);
+  }
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowRight') nextSlide();
+    if(e.key === 'ArrowLeft') prevSlide();
+  });
+</script>
+
+</body>
+</html>
